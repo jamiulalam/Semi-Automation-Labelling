@@ -3,7 +3,13 @@
 matplotlib
 pandas
 numpy
-joblib
-Pillow
 opencv-python
 openpyxl
+PyQt5
+vtk
+glob2
+nibabel
+dipy
+ntpath
+napari[pyqt5]
+multiprocess
