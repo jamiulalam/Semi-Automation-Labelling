@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Run_Visualization</class>
+ <widget class="QMainWindow" name="Run_Visualization">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1653</width>
+    <height>742</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>CT Inspection</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <layout class="QGridLayout" name="gridLayout_5">
+      <item row="7" column="0">
+       <widget class="QLabel" name="label_picked">
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Logfile:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QComboBox" name="comboBox"/>
+      </item>
+      <item row="6" column="0">
+       <widget class="QTreeView" name="treeView_1"/>
+      </item>
+      <item row="3" column="0">
+       <widget class="QTableWidget" name="SQL_table">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="editTriggers">
+         <set>QAbstractItemView::NoEditTriggers</set>
+        </property>
+        <property name="dragEnabled">
+         <bool>true</bool>
+        </property>
+        <property name="sortingEnabled">
+         <bool>true</bool>
+        </property>
+        <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+         <bool>true</bool>
+        </attribute>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_6">
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Select the Tool:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="label">
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Scan's files</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QPushButton" name="add_scan">
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Add new scan</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_5">
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>List of available Scans</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="0">
+       <widget class="QLabel" name="msg_label">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="2" column="4">
+       <widget class="QPlainTextEdit" name="plainTextEdit_1"/>
+      </item>
+      <item row="3" column="4">
+       <widget class="QPushButton" name="pushButton_save_1">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Save</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="label_4">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>3D volume</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLabel" name="Label_plot_1">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="4">
+       <widget class="QLabel" name="label_3">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Editing Meta Data</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <widget class="QFrame" name="Frame_plot_1">
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLabel" name="label_2">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>2D images</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1653</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionLoad_data">
+   <property name="text">
+    <string>Load data</string>
+   </property>
+  </action>
+  <action name="actionSave_to_database">
+   <property name="text">
+    <string>Save to database</string>
+   </property>
+  </action>
+  <action name="actionregistration">
+   <property name="text">
+    <string>Registration</string>
+   </property>
+  </action>
+  <action name="actionbackground_suppression">
+   <property name="text">
+    <string>Background suppression</string>
+   </property>
+  </action>
+  <action name="actionAnnotation">
+   <property name="text">
+    <string>Annotation</string>
+   </property>
+  </action>
+  <action name="actionTrain_a_model">
+   <property name="text">
+    <string>Train a model</string>
+   </property>
+  </action>
+  <action name="actionDeploy_a_model">
+   <property name="text">
+    <string>Deploy a model</string>
+   </property>
+  </action>
+  <action name="action2D_fault_detection">
+   <property name="text">
+    <string>2D fault detection</string>
+   </property>
+  </action>
+  <action name="action3D_Fault_detection">
+   <property name="text">
+    <string>3D Fault detection</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

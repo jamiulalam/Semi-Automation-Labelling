@@ -5,7 +5,20 @@ except:
     from stltovoxel.main import convert_files
 import numpy as np
 
+from vtk.util import numpy_support
+import vtk
+import numpy as np
+
+import os
+import numpy as np
+from glob import glob
+from pathlib import Path
+import pandas as pd
+import matplotlib.pyplot as plt
+
+
  ## SEMI-AUTOMATEDLABELING
+
 def load_stl_files(root):
     from glob import glob
     import os
@@ -76,7 +89,6 @@ def load_image(path):
     img = cv2.imread(path,0)
     return img
 
-
 def napari_view_volume(volume):
     import napari
     napari.gui_qt()
@@ -85,3 +97,40 @@ def napari_view_volume(volume):
     viewer = napari.Viewer()
     viewer.add_image(volume,name='defect-free scan', colormap='gray')#colormap='gist_earth')
     return viewer
+
+
+
+def get_vtk_volume_from_3d_array(data):
+    
+  # check the vtk required format
+  if data.shape[0] != data.shape[2]:
+    data = np.transpose(data, (0, 2, 1))
+
+  imdata = vtk.vtkImageData()
+  depthArray = numpy_support.numpy_to_vtk(data.ravel())#, deep=True, array_type=vtk.VTK_DOUBLE)
+  print('data.shape  = ', data.shape)
+  imdata.SetDimensions(data.shape)
+  spacing= 1
+  imdata.SetSpacing([spacing,spacing,spacing])
+  imdata.SetOrigin([0,0,0])
+  imdata.GetPointData().SetScalars(depthArray)
+
+  colorFunc = vtk.vtkColorTransferFunction()
+  # colorFunc.AddRGBPoint(1, 1, 0.0, 0.0) # Red
+  colorFunc.AddRGBPoint(2, 0.0, 1, 0.0) # Green
+  opacity = vtk.vtkPiecewiseFunction()
+  volumeProperty = vtk.vtkVolumeProperty()
+  # volumeProperty.SetColor(colorFunc)
+  volumeProperty.SetScalarOpacity(opacity)
+  volumeProperty.SetInterpolationTypeToLinear()
+  volumeProperty.SetIndependentComponents(2)
+
+  volumeMapper = vtk.vtkOpenGLGPUVolumeRayCastMapper()
+  volumeMapper.SetInputData(imdata)
+  volumeMapper.SetBlendModeToMaximumIntensity()
+
+
+  volume = vtk.vtkVolume()
+  volume.SetMapper(volumeMapper)
+  volume.SetProperty(volumeProperty)
+  return volume
