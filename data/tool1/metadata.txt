@@ -1,1 +1,2 @@
-Write your comments
+resolution distortion: 20%
+denoisning : 24dB PSNR (background)

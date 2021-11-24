@@ -294,13 +294,13 @@ class MainApp(QMainWindow):
     def show_about_dialog(self):
         
         text = "<center>" \
-            "<h1> CT-Based Integrity Monitoring System (CTIMS) </h1>" \
+            "<h1> Semi-Automated Labeling for CT Images (SALCT) 2021 </h1>" \
             "&#8291;" \
             "<img src=files/logo.png>" \
             "</center>" \
-            "<p>  This software processes CT scans of an object before and after its use for Vault maintenance. It uses new algorithms to detect defects and localize their positions/locations within this object<br/>" \
-            "Email:amrb@nvscanada.ca<br/></p>"
-        QMessageBox.about(self, "About CTIMS 2021", text)
+            "<p>  This software generate Semi-Automatically masks and annotations for 3D CT volume using CAD files<br/>" \
+            "Email:Hossam.Gaber@ontariotechu.ca <br/></p>"
+        QMessageBox.about(self, "About SALCT 2021", text)
     
     def add_new_scan(self):
         print('Add new scan',)

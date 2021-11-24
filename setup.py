@@ -6,7 +6,7 @@ with open("README.md", "r") as f:
 setup(
     name='ct-data-annotation',
     version='0.0.1',
-    description='Sami-Automatically generate maska and annotations for 3D CT volume using CAS files',
+    description='Semi-Automatically generate masks and annotations for 3D CT volume using CAD files',
     long_description=LONG_DESCRIPTION,
     long_description_content_type='text/markdown',
     license='MIT',
