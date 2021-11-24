@@ -2,7 +2,7 @@
 *  Build masks from STL CAD files
 *  CT volume background substruction
 *  CT volume registration
-*  #D annotation mask genration using mask and registred CT volume
+*  3D annotation mask genration using mask and registred CT volume
 
 # Acknowledgement
 
