@@ -11,13 +11,16 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>CT Inspection</string>
+   <string>Semi-Automated Labeling</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <layout class="QGridLayout" name="gridLayout_5">
-      <item row="7" column="0">
+      <item row="1" column="0">
+       <widget class="QTreeView" name="treeView_1"/>
+      </item>
+      <item row="5" column="0">
        <widget class="QLabel" name="label_picked">
         <property name="font">
          <font>
@@ -31,46 +34,7 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
-       <widget class="QComboBox" name="comboBox"/>
-      </item>
-      <item row="6" column="0">
-       <widget class="QTreeView" name="treeView_1"/>
-      </item>
-      <item row="3" column="0">
-       <widget class="QTableWidget" name="SQL_table">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="editTriggers">
-         <set>QAbstractItemView::NoEditTriggers</set>
-        </property>
-        <property name="dragEnabled">
-         <bool>true</bool>
-        </property>
-        <property name="sortingEnabled">
-         <bool>true</bool>
-        </property>
-        <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-         <bool>true</bool>
-        </attribute>
-       </widget>
-      </item>
       <item row="0" column="0">
-       <widget class="QLabel" name="label_6">
-        <property name="font">
-         <font>
-          <pointsize>9</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Select the Tool:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="0">
        <widget class="QLabel" name="label">
         <property name="font">
          <font>
@@ -80,53 +44,35 @@
          </font>
         </property>
         <property name="text">
-         <string>Scan's files</string>
+         <string>Data root</string>
         </property>
        </widget>
       </item>
-      <item row="4" column="0">
-       <widget class="QPushButton" name="add_scan">
-        <property name="font">
-         <font>
-          <pointsize>9</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Add new scan</string>
-        </property>
-       </widget>
+      <item row="3" column="0">
+       <widget class="QPlainTextEdit" name="plainTextEdit_1"/>
       </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="label_5">
-        <property name="font">
-         <font>
-          <pointsize>9</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>List of available Scans</string>
-        </property>
-       </widget>
-      </item>
-      <item row="8" column="0">
+      <item row="6" column="0">
        <widget class="QLabel" name="msg_label">
         <property name="text">
          <string/>
         </property>
        </widget>
       </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="2" column="4">
-       <widget class="QPlainTextEdit" name="plainTextEdit_1"/>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Editing Meta Data</string>
+        </property>
+       </widget>
       </item>
-      <item row="3" column="4">
+      <item row="4" column="0">
        <widget class="QPushButton" name="pushButton_save_1">
         <property name="font">
          <font>
@@ -136,10 +82,14 @@
          </font>
         </property>
         <property name="text">
-         <string>Save</string>
+         <string>Save Metadata</string>
         </property>
        </widget>
       </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QGridLayout" name="gridLayout">
       <item row="1" column="2">
        <widget class="QLabel" name="label_4">
         <property name="font">
@@ -154,29 +104,18 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="1">
-       <widget class="QLabel" name="Label_plot_1">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="4">
-       <widget class="QLabel" name="label_3">
-        <property name="font">
-         <font>
-          <pointsize>10</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Editing Meta Data</string>
-        </property>
-       </widget>
-      </item>
       <item row="2" column="2">
        <layout class="QGridLayout" name="gridLayout_3">
+        <item row="1" column="0">
+         <widget class="QFrame" name="Frame_plot_2">
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+         </widget>
+        </item>
         <item row="0" column="0">
          <widget class="QFrame" name="Frame_plot_1">
           <property name="frameShape">
@@ -189,17 +128,24 @@
         </item>
        </layout>
       </item>
-      <item row="1" column="1">
-       <widget class="QLabel" name="label_2">
+      <item row="3" column="2">
+       <widget class="QPushButton" name="run_annotation">
         <property name="font">
          <font>
-          <pointsize>10</pointsize>
+          <pointsize>9</pointsize>
           <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
         <property name="text">
-         <string>2D images</string>
+         <string>Start Annotation</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLabel" name="Label_plot_1">
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </item>

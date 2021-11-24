@@ -31,8 +31,8 @@ class MainApp(QMainWindow):
         #Parent constructor
         super(MainApp,self).__init__()
         self.hide()
-
-
+        self.file_path = ""
+        self.msg = ''
         # 2D plots 
         self.plot_1 = None
         self.plot_2 = None
@@ -52,10 +52,8 @@ class MainApp(QMainWindow):
         if not os.path.exists(DIR):
             os.makedirs(DIR)
 
-    def showdialog_newScan(self, tool_name):
-        root_folder = os.path.join(self.root_folder , tool_name)
-        self.dialog_widget = Dialog_ScanForm(root_folder, user=self.user.user_name)
-
+    def showdialog_newScan(self):
+        self.dialog_widget = Dialog_ScanForm(self.root_folder, user='NA')
         self.dialog_widget.show()
 
     def showdialog_updateScan(self, tool_name, scan_name):
@@ -90,10 +88,18 @@ class MainApp(QMainWindow):
     
     def msgbtn(self, i):
         print("Button pressed is:",i.text())
-
+    
+    def plot_3D_volume(self, path, vtk_widget):
+        # display the selected Rek volume 
+        volume_arr, vol0  = self.get_volume(path)
+        volume_segments = np.array(np.unique(volume_arr.ravel()))
+        self.Plot_volume(vtk_widget , vol0, volume_segments=volume_segments)
+        print(' vizualized volume path: ', path)
+         
+        
     def windows_format(self):
         # set the title
-        self.setWindowTitle("CT-Based Integrity Monitoring System (CTIMS) 2021")
+        self.setWindowTitle("Semi-Automated Labeling for CT Images (SALCT) 2021")
         # setting  the geometry of window
         # self.setGeometry(0, 0, 400, 300)
         self.setWindowIcon(QIcon('files/icon.png'))
@@ -301,20 +307,9 @@ class MainApp(QMainWindow):
         Dataset_Win.show()
         main_Win.hide()
 
-        if Dataset_Win.list_tools.currentText() == "":
-            select_tool = "Please select a tool from the \"Select the Tool\" drop down box"
-            print(select_tool)
-            self.showdialog_warnning(select_tool)
-            # msg = QMessageBox()
-            # msg.setIcon(QMessageBox.Information)sss
-            # msg.setText(select_tool)
-            # msg.setWindowTitle("Tool Not Selected")
-            # msg.setStandardButtons(QMessageBox.Ok)
-            # retval = msg.exec_()
-        else:
     
-            tool_name = Dataset_Win.list_tools.currentText()
-            Dataset_Win.showdialog_newScan(tool_name)
+        
+        Dataset_Win.showdialog_newScan()
     
     def visualize_dataset(self):
         print('visualize the data stored in : \n', self.file_path)
@@ -495,22 +490,10 @@ class DatasetApp(MainApp):
         self.ui.setupUi(self)
         self.plot_1 = self.ui.Label_plot_1
         self.edit_1 = self.ui.plainTextEdit_1
-        self.save_edit_1 = self.ui.pushButton_save_1
-        self.save_edit_1.clicked.connect(self.save_txt)
-        self.add_scan = self.ui.add_scan
-        self.add_scan.clicked.connect(self.add_new_scan)
 
-        # drop box of tools
-        self.list_tools = self.ui.comboBox
-        self.list_tool_names = ["test", 'test2']
-        self.list_tools.addItems(self.list_tool_names)
-        self.list_tools.currentIndexChanged.connect(self.show_scans_data)
-                                
-        # table visual
-        self.table = self.ui.SQL_table
- 
+    
         # list tree
-        self.path = self.root_folder + self.list_tools.currentText()
+        self.path = self.root_folder 
         self.treeModel = QFileSystemModel()
         self.treeModel.setRootPath(self.path)
         self.treeView = self.ui.treeView_1
@@ -529,7 +512,46 @@ class DatasetApp(MainApp):
         self.vtk_widget_1 = None
         path0 ='files/volume_after.rek'
         self.vtk_widget_1, self.vtk_plot_1 = self.create_vtk_widget(self.vtk_widget_1, self.vtk_plot_1, path0)
+
+        # VTK rendrer 2
+        self.vtk_plot_2 = self.ui.Frame_plot_2
+        self.vtk_widget_2 = None
+        path0 ='files/volume_after.rek'
+        self.vtk_widget_2, self.vtk_plot_2 = self.create_vtk_widget(self.vtk_widget_2, self.vtk_plot_2, path0)
+        # buttons
+        self.run_annotation = self.ui.run_annotation
+        self.run_annotation.clicked.connect(self.run_annotation_algorithm)
+        self.save_edit_1 = self.ui.pushButton_save_1
+        self.save_edit_1.clicked.connect(self.save_txt)
+
+    def get_selected_path(self, index):
+        """ for test """
+        if not index.isValid():
+            return
+        model = index.model()
+        path = model.fileInfo(index).absoluteFilePath()
+        msg = ''
+        if os.path.isfile(path):
+            self.file_path = path 
+            if path[-5:] == '.ctbl' or path[-4:] == '.txt':
+                # display the selected text 
+                self.edit_1.setPlainText(open(self.file_path ).read())
+
+            else:
+            
+                self.plot_3D_volume( path, self.vtk_widget_1)
+
+        else:
+            msg=  '- Warrning (1):  You selected a folder not a file!!\n - [ ' + path + ' ]' 
+                      
+        msg = msg + self.msg
+        print(msg);self.ui.msg_label.setText(msg)
     
+    def run_annotation_algorithm(self):
+        a=1
+
+
+
     def show_scans_data(self, val):
 
         tool_name = self.list_tools.currentText()
@@ -1077,8 +1099,8 @@ def compile_ui(path_):
 def init_windows():
     # main_Win.show_about_dialog()
     # main_Win.paintEngine()
-    main_Win.hide()
-    Dataset_Win.show()
+    main_Win.show()
+    Dataset_Win.hide()
     VerifyReg_Win.hide()
 
 
