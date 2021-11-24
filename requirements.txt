@@ -1,0 +1,9 @@
+#To install these dependencies, please run the following in your terminal or notebook: !pip install -r requirements.txt
+
+matplotlib
+pandas
+numpy
+joblib
+Pillow
+opencv-python
+openpyxl

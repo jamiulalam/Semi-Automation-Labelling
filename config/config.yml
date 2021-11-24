@@ -1,0 +1,9 @@
+DATASET:
+  data_folder: "data/tool1"
+  resulution: 1000
+  pad: 1
+
+
+REGISTRATION:
+  param: 0.8
+  

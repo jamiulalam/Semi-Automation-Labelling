@@ -1,1 +1,1 @@
-# Semi-Automation-Labelling
+# Defect prediction in CT images
