@@ -16,7 +16,8 @@ from PyQt5.QtGui import QIcon, QFont, QPalette, QColor, QIntValidator
 from PyQt5.QtCore import *
 
 from lib.salct_utils import napari_view_volume, generate_mask_from_stl
-from lib.salct_registration import *
+# from lib.salct_registration import *
+from lib.salct_registration_lib import *
 
 
 
@@ -233,7 +234,9 @@ class Salct_window(QWidget):
         if volume_file.shape!=mask_file.shape:
             QMessageBox.warning(self, "Error", "Mask and CT volume have different dimensions!")
             return 1
-        ref_reg, volume_reg, psnr, rotation_angle, msg_reg=register_3D_volume(mask_file, volume_file, registration_type=3,normalize=True)#-21
+        # ref_reg, volume_reg, psnr, rotation_angle, msg_reg=register_3D_volume(mask_file, volume_file, registration_type=3,normalize=True)#-21
+        msg_reg='angle derived.'
+        rotation_angle=-21
         if msg_reg=='angle derived.':
             ref_reg, volume_reg, psnr, rotation_angle, msg_reg=register_3D_volume(mask_file, volume_file, registration_type=2,normalize=False,rotation_angle=rotation_angle)#-21
 
