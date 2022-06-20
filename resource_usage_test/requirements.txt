@@ -1,0 +1,13 @@
+tensorflow
+pynrrd
+opencv-python
+PyQt5
+memory-profiler
+dipy
+fury
+scikit-image
+napari
+torch
+scikit-learn
+psutil
+matplotlib
